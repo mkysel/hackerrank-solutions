@@ -18,28 +18,31 @@ def mergeSort(alist):
     lefthalf = alist[:mid]
     righthalf = alist[mid:]
 
+    n1 = len(lefthalf)
+    n2 = len(righthalf)
+
     inversion_count += mergeSort(lefthalf)
     inversion_count += mergeSort(righthalf)
 
     i = 0
     j = 0
     k = 0
-    while i < len(lefthalf) and j < len(righthalf):
+    while i < n1 and j < n2:
         if lefthalf[i] <= righthalf[j]:
             alist[k] = lefthalf[i]
             i = i + 1
         else:
             alist[k] = righthalf[j]
             j = j + 1
-            inversion_count += len(lefthalf) - i
+            inversion_count += n1 - i
         k = k + 1
 
-    while i < len(lefthalf):
+    while i < n1:
         alist[k] = lefthalf[i]
         i = i + 1
         k = k + 1
 
-    while j < len(righthalf):
+    while j < n2:
         alist[k] = righthalf[j]
         j = j + 1
         k = k + 1
